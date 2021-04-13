@@ -12,7 +12,8 @@ public class KoneksiDatabase{
             System.out.println("Connection not found" + cnf.getLocalizedMessage());
         }
         try{
-            koneksi = DriverManager.getConnection("jdbc:mysql://localhost/movie rental", "root", "");
+            koneksi = DriverManager.getConnection("jdbc:mysql://localhost/ebookshop", "root", "");
+            System.out.println("Connected");
         }catch(SQLException e2){
             e2.printStackTrace();
         }

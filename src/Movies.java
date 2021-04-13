@@ -1,10 +1,14 @@
 
+import java.awt.Color;
 import java.awt.FlowLayout;
 import java.awt.PopupMenu;
 import javax.swing.ImageIcon;
 import javax.swing.JPanel;
 import java.sql.*;
+import java.text.SimpleDateFormat;
+import java.time.LocalDateTime;
 import java.util.logging.*;
+import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
 /*
@@ -27,6 +31,8 @@ public class Movies extends javax.swing.JFrame {
      */
     public Movies() {
         initComponents();
+        firstShow();
+        countData();
     }
 
     /**
@@ -51,10 +57,53 @@ public class Movies extends javax.swing.JFrame {
         menuCategories1 = new javax.swing.JLabel();
         menuDashboard2 = new javax.swing.JLabel();
         sidebarMovies = new javax.swing.JLabel();
-        panelCategories = new javax.swing.JPanel();
+        panelOthers = new javax.swing.JPanel();
         menuMovies2 = new javax.swing.JLabel();
         menuDashboard3 = new javax.swing.JLabel();
         sidebarCategories = new javax.swing.JLabel();
+        panelUpdateMovies = new javax.swing.JPanel();
+        btnSubmitUpdate = new javax.swing.JButton();
+        closeUpdate = new javax.swing.JLabel();
+        idMovieUpdate = new javax.swing.JLabel();
+        labelTitle12 = new javax.swing.JLabel();
+        inputRentalRepCostUpdate = new javax.swing.JTextField();
+        jSeparator9 = new javax.swing.JSeparator();
+        labelTitle13 = new javax.swing.JLabel();
+        jSeparator10 = new javax.swing.JSeparator();
+        inputRentalDurUpdate = new javax.swing.JTextField();
+        labelTitle14 = new javax.swing.JLabel();
+        jSeparator11 = new javax.swing.JSeparator();
+        inputRentalRateUpdate = new javax.swing.JTextField();
+        labelTitle15 = new javax.swing.JLabel();
+        jLabel2 = new javax.swing.JLabel();
+        jSeparator12 = new javax.swing.JSeparator();
+        jSeparator13 = new javax.swing.JSeparator();
+        jScrollPane5 = new javax.swing.JScrollPane();
+        textareaFullTextUpdate = new javax.swing.JTextArea();
+        jScrollPane6 = new javax.swing.JScrollPane();
+        textareaSpecFeatUpdate = new javax.swing.JTextArea();
+        jScrollPane7 = new javax.swing.JScrollPane();
+        textareaDescUpdate = new javax.swing.JTextArea();
+        labelTitle16 = new javax.swing.JLabel();
+        labelTitle17 = new javax.swing.JLabel();
+        dropdownRatingUpdate = new javax.swing.JComboBox<>();
+        dropIdLangUpdate = new javax.swing.JLabel();
+        dropdownLangUpdate = new javax.swing.JComboBox<>();
+        labelTitle18 = new javax.swing.JLabel();
+        dropIdCatUpdate = new javax.swing.JLabel();
+        dropdownCatUpdate = new javax.swing.JComboBox<>();
+        labelTitle19 = new javax.swing.JLabel();
+        labelTitle20 = new javax.swing.JLabel();
+        inputLengthUpdate = new javax.swing.JTextField();
+        jSeparator14 = new javax.swing.JSeparator();
+        labelTitle21 = new javax.swing.JLabel();
+        inputYearUpdate = new javax.swing.JTextField();
+        jSeparator15 = new javax.swing.JSeparator();
+        labelTitle22 = new javax.swing.JLabel();
+        inputTitleUpdate = new javax.swing.JTextField();
+        jSeparator16 = new javax.swing.JSeparator();
+        labelTitle23 = new javax.swing.JLabel();
+        bgUpdateMovie = new javax.swing.JLabel();
         mainPageDashboard = new javax.swing.JPanel();
         countStaff = new javax.swing.JLabel();
         countCustomer = new javax.swing.JLabel();
@@ -88,8 +137,54 @@ public class Movies extends javax.swing.JFrame {
         btnUpdate = new javax.swing.JButton();
         addMovies = new javax.swing.JButton();
         pageMovies = new javax.swing.JLabel();
-        mainPageCategories = new javax.swing.JPanel();
-        pageCategories = new javax.swing.JLabel();
+        mainPageOthers = new javax.swing.JPanel();
+        jScrollPaneCat = new javax.swing.JScrollPane();
+        jTableCat = new javax.swing.JTable();
+        jScrollPaneLang = new javax.swing.JScrollPane();
+        jTableLang = new javax.swing.JTable();
+        pageOthers = new javax.swing.JLabel();
+        panelAddMovies = new javax.swing.JPanel();
+        btnSubmit = new javax.swing.JButton();
+        closeAdd = new javax.swing.JLabel();
+        labelTitle11 = new javax.swing.JLabel();
+        inputRentalRepCost = new javax.swing.JTextField();
+        jSeparator8 = new javax.swing.JSeparator();
+        labelTitle10 = new javax.swing.JLabel();
+        jSeparator7 = new javax.swing.JSeparator();
+        inputRentalDur = new javax.swing.JTextField();
+        labelTitle9 = new javax.swing.JLabel();
+        jSeparator6 = new javax.swing.JSeparator();
+        inputRentalRate = new javax.swing.JTextField();
+        labelTitle8 = new javax.swing.JLabel();
+        jLabel1 = new javax.swing.JLabel();
+        jSeparator5 = new javax.swing.JSeparator();
+        jSeparator4 = new javax.swing.JSeparator();
+        jScrollPane4 = new javax.swing.JScrollPane();
+        textareaFullText = new javax.swing.JTextArea();
+        jScrollPane3 = new javax.swing.JScrollPane();
+        textareaSpecFeat = new javax.swing.JTextArea();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        textareaDesc = new javax.swing.JTextArea();
+        labelTitle7 = new javax.swing.JLabel();
+        labelTitle6 = new javax.swing.JLabel();
+        dropdownRating = new javax.swing.JComboBox<>();
+        dropIdLang = new javax.swing.JLabel();
+        dropdownLang = new javax.swing.JComboBox<>();
+        labelTitle5 = new javax.swing.JLabel();
+        dropIdCat = new javax.swing.JLabel();
+        dropdownCat = new javax.swing.JComboBox<>();
+        labelTitle4 = new javax.swing.JLabel();
+        labelTitle3 = new javax.swing.JLabel();
+        inputLength = new javax.swing.JTextField();
+        jSeparator3 = new javax.swing.JSeparator();
+        labelTitle2 = new javax.swing.JLabel();
+        inputYear = new javax.swing.JTextField();
+        jSeparator2 = new javax.swing.JSeparator();
+        labelTitle1 = new javax.swing.JLabel();
+        inputTitle = new javax.swing.JTextField();
+        jSeparator1 = new javax.swing.JSeparator();
+        labelTitle = new javax.swing.JLabel();
+        bgAddMovies = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setBackground(new java.awt.Color(240, 230, 210));
@@ -177,7 +272,7 @@ public class Movies extends javax.swing.JFrame {
 
         getContentPane().add(panelMovies, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 200, 650));
 
-        panelCategories.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+        panelOthers.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         menuMovies2.setToolTipText("");
         menuMovies2.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
@@ -186,7 +281,7 @@ public class Movies extends javax.swing.JFrame {
                 menuMovies2MouseClicked(evt);
             }
         });
-        panelCategories.add(menuMovies2, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 340, 120, 20));
+        panelOthers.add(menuMovies2, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 340, 120, 20));
 
         menuDashboard3.setToolTipText("");
         menuDashboard3.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
@@ -195,30 +290,282 @@ public class Movies extends javax.swing.JFrame {
                 menuDashboard3MouseClicked(evt);
             }
         });
-        panelCategories.add(menuDashboard3, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 268, 150, 18));
+        panelOthers.add(menuDashboard3, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 268, 150, 18));
 
-        sidebarCategories.setIcon(new javax.swing.ImageIcon(getClass().getResource("/category.png"))); // NOI18N
+        sidebarCategories.setIcon(new javax.swing.ImageIcon(getClass().getResource("/others.png"))); // NOI18N
         sidebarCategories.setText("S");
-        panelCategories.add(sidebarCategories, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 200, 650));
+        panelOthers.add(sidebarCategories, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 200, 650));
 
-        getContentPane().add(panelCategories, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 200, 650));
+        getContentPane().add(panelOthers, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 200, 650));
+
+        panelUpdateMovies.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        btnSubmitUpdate.setIcon(new javax.swing.ImageIcon(getClass().getResource("/buttonupdatesubmit.png"))); // NOI18N
+        btnSubmitUpdate.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnSubmitUpdate.setFocusable(false);
+        btnSubmitUpdate.setMargin(new java.awt.Insets(0, 0, 0, 0));
+        btnSubmitUpdate.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnSubmitUpdateActionPerformed(evt);
+            }
+        });
+        panelUpdateMovies.add(btnSubmitUpdate, new org.netbeans.lib.awtextra.AbsoluteConstraints(650, 565, 83, 27));
+
+        closeUpdate.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        closeUpdate.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                closeUpdateMouseClicked(evt);
+            }
+        });
+        panelUpdateMovies.add(closeUpdate, new org.netbeans.lib.awtextra.AbsoluteConstraints(727, 68, 16, 16));
+        panelUpdateMovies.add(idMovieUpdate, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 60, 40, 30));
+
+        labelTitle12.setFont(new java.awt.Font("Century Gothic", 1, 13)); // NOI18N
+        labelTitle12.setForeground(new java.awt.Color(250, 103, 31));
+        labelTitle12.setText("Replacement Cost");
+        panelUpdateMovies.add(labelTitle12, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 500, 150, 20));
+
+        inputRentalRepCostUpdate.setFont(new java.awt.Font("Arial Rounded MT Bold", 0, 14)); // NOI18N
+        inputRentalRepCostUpdate.setForeground(new java.awt.Color(153, 153, 153));
+        inputRentalRepCostUpdate.setText("Enter replacement cost");
+        inputRentalRepCostUpdate.setToolTipText("Enter Movie Title");
+        inputRentalRepCostUpdate.setBorder(null);
+        inputRentalRepCostUpdate.setOpaque(false);
+        panelUpdateMovies.add(inputRentalRepCostUpdate, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 520, 190, 30));
+
+        jSeparator9.setBackground(new java.awt.Color(204, 204, 204));
+        jSeparator9.setForeground(new java.awt.Color(255, 255, 255));
+        panelUpdateMovies.add(jSeparator9, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 550, 190, 10));
+
+        labelTitle13.setFont(new java.awt.Font("Century Gothic", 0, 13)); // NOI18N
+        labelTitle13.setForeground(new java.awt.Color(250, 103, 31));
+        labelTitle13.setText("day");
+        panelUpdateMovies.add(labelTitle13, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 525, 40, 20));
+
+        jSeparator10.setBackground(new java.awt.Color(204, 204, 204));
+        jSeparator10.setForeground(new java.awt.Color(255, 255, 255));
+        panelUpdateMovies.add(jSeparator10, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 550, 70, 10));
+
+        inputRentalDurUpdate.setFont(new java.awt.Font("Arial Rounded MT Bold", 0, 14)); // NOI18N
+        inputRentalDurUpdate.setForeground(new java.awt.Color(153, 153, 153));
+        inputRentalDurUpdate.setText("Duration");
+        inputRentalDurUpdate.setToolTipText("Enter Movie Title");
+        inputRentalDurUpdate.setBorder(null);
+        inputRentalDurUpdate.setOpaque(false);
+        panelUpdateMovies.add(inputRentalDurUpdate, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 520, 70, 30));
+
+        labelTitle14.setFont(new java.awt.Font("Century Gothic", 1, 13)); // NOI18N
+        labelTitle14.setForeground(new java.awt.Color(250, 103, 31));
+        labelTitle14.setText("Rental Duration");
+        panelUpdateMovies.add(labelTitle14, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 500, 100, 20));
+
+        jSeparator11.setBackground(new java.awt.Color(204, 204, 204));
+        jSeparator11.setForeground(new java.awt.Color(255, 255, 255));
+        panelUpdateMovies.add(jSeparator11, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 550, 160, 10));
+
+        inputRentalRateUpdate.setFont(new java.awt.Font("Arial Rounded MT Bold", 0, 14)); // NOI18N
+        inputRentalRateUpdate.setForeground(new java.awt.Color(153, 153, 153));
+        inputRentalRateUpdate.setText("Enter rental rate");
+        inputRentalRateUpdate.setToolTipText("Enter Movie Title");
+        inputRentalRateUpdate.setBorder(null);
+        inputRentalRateUpdate.setOpaque(false);
+        panelUpdateMovies.add(inputRentalRateUpdate, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 520, 160, 30));
+
+        labelTitle15.setFont(new java.awt.Font("Century Gothic", 1, 13)); // NOI18N
+        labelTitle15.setForeground(new java.awt.Color(250, 103, 31));
+        labelTitle15.setText("Rental Rate");
+        panelUpdateMovies.add(labelTitle15, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 500, 100, 20));
+
+        jLabel2.setBackground(new java.awt.Color(204, 204, 204));
+        jLabel2.setFont(new java.awt.Font("Century Gothic", 1, 12)); // NOI18N
+        jLabel2.setForeground(new java.awt.Color(153, 153, 153));
+        jLabel2.setText("Rental Operation");
+        panelUpdateMovies.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 483, -1, -1));
+
+        jSeparator12.setForeground(new java.awt.Color(204, 204, 204));
+        panelUpdateMovies.add(jSeparator12, new org.netbeans.lib.awtextra.AbsoluteConstraints(275, 490, 480, 10));
+
+        jSeparator13.setForeground(new java.awt.Color(204, 204, 204));
+        panelUpdateMovies.add(jSeparator13, new org.netbeans.lib.awtextra.AbsoluteConstraints(145, 490, 20, 10));
+
+        textareaFullTextUpdate.setColumns(20);
+        textareaFullTextUpdate.setFont(new java.awt.Font("Arial Rounded MT Bold", 0, 12)); // NOI18N
+        textareaFullTextUpdate.setForeground(new java.awt.Color(153, 153, 153));
+        textareaFullTextUpdate.setLineWrap(true);
+        textareaFullTextUpdate.setRows(5);
+        textareaFullTextUpdate.setText("Enter fulltext");
+        textareaFullTextUpdate.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                textareaFullTextUpdateFocusGained(evt);
+            }
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                textareaFullTextUpdateFocusLost(evt);
+            }
+        });
+        jScrollPane5.setViewportView(textareaFullTextUpdate);
+
+        panelUpdateMovies.add(jScrollPane5, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 390, 290, -1));
+
+        textareaSpecFeatUpdate.setColumns(20);
+        textareaSpecFeatUpdate.setFont(new java.awt.Font("Arial Rounded MT Bold", 0, 12)); // NOI18N
+        textareaSpecFeatUpdate.setForeground(new java.awt.Color(153, 153, 153));
+        textareaSpecFeatUpdate.setLineWrap(true);
+        textareaSpecFeatUpdate.setRows(5);
+        textareaSpecFeatUpdate.setText("Enter special features");
+        textareaSpecFeatUpdate.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                textareaSpecFeatUpdateFocusGained(evt);
+            }
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                textareaSpecFeatUpdateFocusLost(evt);
+            }
+        });
+        jScrollPane6.setViewportView(textareaSpecFeatUpdate);
+
+        panelUpdateMovies.add(jScrollPane6, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 390, 300, -1));
+
+        textareaDescUpdate.setColumns(20);
+        textareaDescUpdate.setFont(new java.awt.Font("Arial Rounded MT Bold", 0, 12)); // NOI18N
+        textareaDescUpdate.setForeground(new java.awt.Color(153, 153, 153));
+        textareaDescUpdate.setLineWrap(true);
+        textareaDescUpdate.setRows(5);
+        textareaDescUpdate.setText("Enter movie description");
+        jScrollPane7.setViewportView(textareaDescUpdate);
+
+        panelUpdateMovies.add(jScrollPane7, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 290, 600, -1));
+
+        labelTitle16.setFont(new java.awt.Font("Century Gothic", 1, 13)); // NOI18N
+        labelTitle16.setForeground(new java.awt.Color(250, 103, 31));
+        labelTitle16.setText("Description");
+        panelUpdateMovies.add(labelTitle16, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 260, 130, 20));
+
+        labelTitle17.setFont(new java.awt.Font("Century Gothic", 1, 13)); // NOI18N
+        labelTitle17.setForeground(new java.awt.Color(250, 103, 31));
+        labelTitle17.setText("Rating");
+        panelUpdateMovies.add(labelTitle17, new org.netbeans.lib.awtextra.AbsoluteConstraints(610, 185, 70, 20));
+
+        dropdownRatingUpdate.setFont(new java.awt.Font("Arial Rounded MT Bold", 0, 12)); // NOI18N
+        dropdownRatingUpdate.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "1", "2", "3", "3", "4", "5", "6", "7", "8", "9", "10" }));
+        dropdownRatingUpdate.setFocusable(false);
+        dropdownRatingUpdate.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                dropdownRatingUpdateActionPerformed(evt);
+            }
+        });
+        panelUpdateMovies.add(dropdownRatingUpdate, new org.netbeans.lib.awtextra.AbsoluteConstraints(610, 210, 50, 35));
+
+        dropIdLangUpdate.setText("idLang");
+        panelUpdateMovies.add(dropIdLangUpdate, new org.netbeans.lib.awtextra.AbsoluteConstraints(550, 215, 25, 35));
+
+        dropdownLangUpdate.setFont(new java.awt.Font("Arial Rounded MT Bold", 0, 12)); // NOI18N
+        dropdownLangUpdate.setFocusable(false);
+        dropdownLangUpdate.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                dropdownLangUpdateActionPerformed(evt);
+            }
+        });
+        panelUpdateMovies.add(dropdownLangUpdate, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 210, 170, 35));
+
+        labelTitle18.setFont(new java.awt.Font("Century Gothic", 1, 13)); // NOI18N
+        labelTitle18.setForeground(new java.awt.Color(250, 103, 31));
+        labelTitle18.setText("Language");
+        panelUpdateMovies.add(labelTitle18, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 185, 70, 20));
+
+        dropIdCatUpdate.setText("idCat");
+        panelUpdateMovies.add(dropIdCatUpdate, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 215, 25, 35));
+
+        dropdownCatUpdate.setFont(new java.awt.Font("Arial Rounded MT Bold", 0, 12)); // NOI18N
+        dropdownCatUpdate.setFocusable(false);
+        dropdownCatUpdate.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                dropdownCatUpdateActionPerformed(evt);
+            }
+        });
+        panelUpdateMovies.add(dropdownCatUpdate, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 210, 170, 35));
+
+        labelTitle19.setFont(new java.awt.Font("Century Gothic", 1, 13)); // NOI18N
+        labelTitle19.setForeground(new java.awt.Color(250, 103, 31));
+        labelTitle19.setText("Category");
+        panelUpdateMovies.add(labelTitle19, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 185, 70, 20));
+
+        labelTitle20.setFont(new java.awt.Font("Century Gothic", 0, 13)); // NOI18N
+        labelTitle20.setForeground(new java.awt.Color(250, 103, 31));
+        labelTitle20.setText("minutes");
+        panelUpdateMovies.add(labelTitle20, new org.netbeans.lib.awtextra.AbsoluteConstraints(660, 145, 70, 20));
+
+        inputLengthUpdate.setFont(new java.awt.Font("Arial Rounded MT Bold", 0, 14)); // NOI18N
+        inputLengthUpdate.setForeground(new java.awt.Color(153, 153, 153));
+        inputLengthUpdate.setText("Length");
+        inputLengthUpdate.setToolTipText("Enter Movie Title");
+        inputLengthUpdate.setBorder(null);
+        inputLengthUpdate.setOpaque(false);
+        panelUpdateMovies.add(inputLengthUpdate, new org.netbeans.lib.awtextra.AbsoluteConstraints(590, 140, 60, 30));
+
+        jSeparator14.setBackground(new java.awt.Color(204, 204, 204));
+        jSeparator14.setForeground(new java.awt.Color(255, 255, 255));
+        panelUpdateMovies.add(jSeparator14, new org.netbeans.lib.awtextra.AbsoluteConstraints(590, 170, 60, 10));
+
+        labelTitle21.setFont(new java.awt.Font("Century Gothic", 1, 13)); // NOI18N
+        labelTitle21.setForeground(new java.awt.Color(250, 103, 31));
+        labelTitle21.setText("Movie Length");
+        panelUpdateMovies.add(labelTitle21, new org.netbeans.lib.awtextra.AbsoluteConstraints(590, 120, 100, 20));
+
+        inputYearUpdate.setFont(new java.awt.Font("Arial Rounded MT Bold", 0, 14)); // NOI18N
+        inputYearUpdate.setForeground(new java.awt.Color(153, 153, 153));
+        inputYearUpdate.setText("Enter movie year");
+        inputYearUpdate.setToolTipText("Enter Movie Title");
+        inputYearUpdate.setBorder(null);
+        inputYearUpdate.setOpaque(false);
+        panelUpdateMovies.add(inputYearUpdate, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 140, 120, 30));
+
+        jSeparator15.setBackground(new java.awt.Color(204, 204, 204));
+        jSeparator15.setForeground(new java.awt.Color(255, 255, 255));
+        panelUpdateMovies.add(jSeparator15, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 170, 120, 10));
+
+        labelTitle22.setFont(new java.awt.Font("Century Gothic", 1, 13)); // NOI18N
+        labelTitle22.setForeground(new java.awt.Color(250, 103, 31));
+        labelTitle22.setText("Year");
+        panelUpdateMovies.add(labelTitle22, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 120, 70, 20));
+
+        inputTitleUpdate.setFont(new java.awt.Font("Arial Rounded MT Bold", 0, 14)); // NOI18N
+        inputTitleUpdate.setForeground(new java.awt.Color(153, 153, 153));
+        inputTitleUpdate.setText("Enter movie title");
+        inputTitleUpdate.setToolTipText("Enter Movie Title");
+        inputTitleUpdate.setBorder(null);
+        inputTitleUpdate.setOpaque(false);
+        panelUpdateMovies.add(inputTitleUpdate, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 140, 260, 30));
+
+        jSeparator16.setBackground(new java.awt.Color(204, 204, 204));
+        jSeparator16.setForeground(new java.awt.Color(255, 255, 255));
+        panelUpdateMovies.add(jSeparator16, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 170, 260, 10));
+
+        labelTitle23.setFont(new java.awt.Font("Century Gothic", 1, 13)); // NOI18N
+        labelTitle23.setForeground(new java.awt.Color(250, 103, 31));
+        labelTitle23.setText("Title");
+        panelUpdateMovies.add(labelTitle23, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 120, 70, 20));
+
+        bgUpdateMovie.setIcon(new javax.swing.ImageIcon(getClass().getResource("/bgupdatemovie.png"))); // NOI18N
+        panelUpdateMovies.add(bgUpdateMovie, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 900, 650));
+
+        getContentPane().add(panelUpdateMovies, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 900, 650));
 
         mainPageDashboard.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         countStaff.setFont(new java.awt.Font("Century Gothic", 1, 48)); // NOI18N
         countStaff.setForeground(new java.awt.Color(139, 138, 142));
         countStaff.setText("20");
-        mainPageDashboard.add(countStaff, new org.netbeans.lib.awtextra.AbsoluteConstraints(590, 100, -1, -1));
+        mainPageDashboard.add(countStaff, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 100, -1, -1));
 
         countCustomer.setFont(new java.awt.Font("Century Gothic", 1, 48)); // NOI18N
         countCustomer.setForeground(new java.awt.Color(139, 138, 142));
-        countCustomer.setText("50");
-        mainPageDashboard.add(countCustomer, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 100, -1, -1));
+        countCustomer.setText("301");
+        mainPageDashboard.add(countCustomer, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 100, -1, -1));
 
         countMovies.setFont(new java.awt.Font("Century Gothic", 1, 48)); // NOI18N
         countMovies.setForeground(new java.awt.Color(255, 255, 255));
-        countMovies.setText("1350");
-        mainPageDashboard.add(countMovies, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 100, -1, -1));
+        countMovies.setText("222");
+        countMovies.setToolTipText("");
+        mainPageDashboard.add(countMovies, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 100, -1, -1));
 
         pageDashboard.setIcon(new javax.swing.ImageIcon(getClass().getResource("/dashboardright.png"))); // NOI18N
         mainPageDashboard.add(pageDashboard, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 700, 650));
@@ -340,12 +687,15 @@ public class Movies extends javax.swing.JFrame {
 
             },
             new String [] {
-                "No", "Title", "Release Year", "Desc", "Rating", "Language"
+                "ID Movie", "Title", "Release Year", "Desc", "Rating", "Language"
             }
-        ));
-        jTable1.addFocusListener(new java.awt.event.FocusAdapter() {
-            public void focusGained(java.awt.event.FocusEvent evt) {
-                jTable1FocusGained(evt);
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false, false, false
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
             }
         });
         jScrollPane1.setViewportView(jTable1);
@@ -367,12 +717,22 @@ public class Movies extends javax.swing.JFrame {
         btnUpdate.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btnUpdate.setFocusable(false);
         btnUpdate.setMargin(new java.awt.Insets(0, 0, 0, 0));
+        btnUpdate.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnUpdateActionPerformed(evt);
+            }
+        });
         mainPageMovies.add(btnUpdate, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 540, 106, 27));
 
         addMovies.setIcon(new javax.swing.ImageIcon(getClass().getResource("/buttonadd.png"))); // NOI18N
         addMovies.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         addMovies.setFocusable(false);
         addMovies.setMargin(new java.awt.Insets(0, 0, 0, 0));
+        addMovies.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                addMoviesActionPerformed(evt);
+            }
+        });
         mainPageMovies.add(addMovies, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 90, 106, 27));
 
         pageMovies.setIcon(new javax.swing.ImageIcon(getClass().getResource("/bgmovies.png"))); // NOI18N
@@ -380,12 +740,364 @@ public class Movies extends javax.swing.JFrame {
 
         getContentPane().add(mainPageMovies, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 0, -1, -1));
 
-        mainPageCategories.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+        mainPageOthers.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        pageCategories.setIcon(new javax.swing.ImageIcon(getClass().getResource("/bgcategories.png"))); // NOI18N
-        mainPageCategories.add(pageCategories, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 700, 650));
+        jTableCat.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null},
+                {null, null},
+                {null, null},
+                {null, null}
+            },
+            new String [] {
+                "No", "Name"
+            }
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, false
+            };
 
-        getContentPane().add(mainPageCategories, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 0, -1, -1));
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        jScrollPaneCat.setViewportView(jTableCat);
+
+        mainPageOthers.add(jScrollPaneCat, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 60, 650, 190));
+
+        jTableLang.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null},
+                {null, null},
+                {null, null},
+                {null, null}
+            },
+            new String [] {
+                "No", "Name"
+            }
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, false
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        jScrollPaneLang.setViewportView(jTableLang);
+
+        mainPageOthers.add(jScrollPaneLang, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 350, 650, 190));
+
+        pageOthers.setIcon(new javax.swing.ImageIcon(getClass().getResource("/bgothers.png"))); // NOI18N
+        mainPageOthers.add(pageOthers, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 700, 650));
+
+        getContentPane().add(mainPageOthers, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 0, -1, -1));
+
+        panelAddMovies.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        btnSubmit.setIcon(new javax.swing.ImageIcon(getClass().getResource("/buttonsubmit.png"))); // NOI18N
+        btnSubmit.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnSubmit.setFocusable(false);
+        btnSubmit.setMargin(new java.awt.Insets(0, 0, 0, 0));
+        btnSubmit.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnSubmitActionPerformed(evt);
+            }
+        });
+        panelAddMovies.add(btnSubmit, new org.netbeans.lib.awtextra.AbsoluteConstraints(650, 565, 83, 27));
+
+        closeAdd.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        closeAdd.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                closeAddMouseClicked(evt);
+            }
+        });
+        panelAddMovies.add(closeAdd, new org.netbeans.lib.awtextra.AbsoluteConstraints(727, 68, 16, 16));
+
+        labelTitle11.setFont(new java.awt.Font("Century Gothic", 1, 13)); // NOI18N
+        labelTitle11.setForeground(new java.awt.Color(250, 103, 31));
+        labelTitle11.setText("Replacement Cost");
+        panelAddMovies.add(labelTitle11, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 500, 150, 20));
+
+        inputRentalRepCost.setFont(new java.awt.Font("Arial Rounded MT Bold", 0, 14)); // NOI18N
+        inputRentalRepCost.setForeground(new java.awt.Color(153, 153, 153));
+        inputRentalRepCost.setText("Enter replacement cost");
+        inputRentalRepCost.setToolTipText("Enter Movie Title");
+        inputRentalRepCost.setBorder(null);
+        inputRentalRepCost.setOpaque(false);
+        inputRentalRepCost.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                inputRentalRepCostFocusGained(evt);
+            }
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                inputRentalRepCostFocusLost(evt);
+            }
+        });
+        panelAddMovies.add(inputRentalRepCost, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 520, 190, 30));
+
+        jSeparator8.setBackground(new java.awt.Color(204, 204, 204));
+        jSeparator8.setForeground(new java.awt.Color(255, 255, 255));
+        panelAddMovies.add(jSeparator8, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 550, 190, 10));
+
+        labelTitle10.setFont(new java.awt.Font("Century Gothic", 0, 13)); // NOI18N
+        labelTitle10.setForeground(new java.awt.Color(250, 103, 31));
+        labelTitle10.setText("day");
+        panelAddMovies.add(labelTitle10, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 525, 40, 20));
+
+        jSeparator7.setBackground(new java.awt.Color(204, 204, 204));
+        jSeparator7.setForeground(new java.awt.Color(255, 255, 255));
+        panelAddMovies.add(jSeparator7, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 550, 70, 10));
+
+        inputRentalDur.setFont(new java.awt.Font("Arial Rounded MT Bold", 0, 14)); // NOI18N
+        inputRentalDur.setForeground(new java.awt.Color(153, 153, 153));
+        inputRentalDur.setText("Duration");
+        inputRentalDur.setToolTipText("Enter Movie Title");
+        inputRentalDur.setBorder(null);
+        inputRentalDur.setOpaque(false);
+        inputRentalDur.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                inputRentalDurFocusGained(evt);
+            }
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                inputRentalDurFocusLost(evt);
+            }
+        });
+        panelAddMovies.add(inputRentalDur, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 520, 70, 30));
+
+        labelTitle9.setFont(new java.awt.Font("Century Gothic", 1, 13)); // NOI18N
+        labelTitle9.setForeground(new java.awt.Color(250, 103, 31));
+        labelTitle9.setText("Rental Duration");
+        panelAddMovies.add(labelTitle9, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 500, 100, 20));
+
+        jSeparator6.setBackground(new java.awt.Color(204, 204, 204));
+        jSeparator6.setForeground(new java.awt.Color(255, 255, 255));
+        panelAddMovies.add(jSeparator6, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 550, 160, 10));
+
+        inputRentalRate.setFont(new java.awt.Font("Arial Rounded MT Bold", 0, 14)); // NOI18N
+        inputRentalRate.setForeground(new java.awt.Color(153, 153, 153));
+        inputRentalRate.setText("Enter rental rate");
+        inputRentalRate.setToolTipText("Enter Movie Title");
+        inputRentalRate.setBorder(null);
+        inputRentalRate.setOpaque(false);
+        inputRentalRate.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                inputRentalRateFocusGained(evt);
+            }
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                inputRentalRateFocusLost(evt);
+            }
+        });
+        panelAddMovies.add(inputRentalRate, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 520, 160, 30));
+
+        labelTitle8.setFont(new java.awt.Font("Century Gothic", 1, 13)); // NOI18N
+        labelTitle8.setForeground(new java.awt.Color(250, 103, 31));
+        labelTitle8.setText("Rental Rate");
+        panelAddMovies.add(labelTitle8, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 500, 100, 20));
+
+        jLabel1.setBackground(new java.awt.Color(204, 204, 204));
+        jLabel1.setFont(new java.awt.Font("Century Gothic", 1, 12)); // NOI18N
+        jLabel1.setForeground(new java.awt.Color(153, 153, 153));
+        jLabel1.setText("Rental Operation");
+        panelAddMovies.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 483, -1, -1));
+
+        jSeparator5.setForeground(new java.awt.Color(204, 204, 204));
+        panelAddMovies.add(jSeparator5, new org.netbeans.lib.awtextra.AbsoluteConstraints(275, 490, 480, 10));
+
+        jSeparator4.setForeground(new java.awt.Color(204, 204, 204));
+        panelAddMovies.add(jSeparator4, new org.netbeans.lib.awtextra.AbsoluteConstraints(145, 490, 20, 10));
+
+        textareaFullText.setColumns(20);
+        textareaFullText.setFont(new java.awt.Font("Arial Rounded MT Bold", 0, 12)); // NOI18N
+        textareaFullText.setForeground(new java.awt.Color(153, 153, 153));
+        textareaFullText.setLineWrap(true);
+        textareaFullText.setRows(5);
+        textareaFullText.setText("Enter fulltext");
+        textareaFullText.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                textareaFullTextFocusGained(evt);
+            }
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                textareaFullTextFocusLost(evt);
+            }
+        });
+        jScrollPane4.setViewportView(textareaFullText);
+
+        panelAddMovies.add(jScrollPane4, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 390, 290, -1));
+
+        textareaSpecFeat.setColumns(20);
+        textareaSpecFeat.setFont(new java.awt.Font("Arial Rounded MT Bold", 0, 12)); // NOI18N
+        textareaSpecFeat.setForeground(new java.awt.Color(153, 153, 153));
+        textareaSpecFeat.setLineWrap(true);
+        textareaSpecFeat.setRows(5);
+        textareaSpecFeat.setText("Enter special features");
+        textareaSpecFeat.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                textareaSpecFeatFocusGained(evt);
+            }
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                textareaSpecFeatFocusLost(evt);
+            }
+        });
+        jScrollPane3.setViewportView(textareaSpecFeat);
+
+        panelAddMovies.add(jScrollPane3, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 390, 300, -1));
+
+        textareaDesc.setColumns(20);
+        textareaDesc.setFont(new java.awt.Font("Arial Rounded MT Bold", 0, 12)); // NOI18N
+        textareaDesc.setForeground(new java.awt.Color(153, 153, 153));
+        textareaDesc.setLineWrap(true);
+        textareaDesc.setRows(5);
+        textareaDesc.setText("Enter movie description");
+        textareaDesc.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                textareaDescFocusGained(evt);
+            }
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                textareaDescFocusLost(evt);
+            }
+        });
+        jScrollPane2.setViewportView(textareaDesc);
+
+        panelAddMovies.add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 290, 600, -1));
+
+        labelTitle7.setFont(new java.awt.Font("Century Gothic", 1, 13)); // NOI18N
+        labelTitle7.setForeground(new java.awt.Color(250, 103, 31));
+        labelTitle7.setText("Description");
+        panelAddMovies.add(labelTitle7, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 260, 130, 20));
+
+        labelTitle6.setFont(new java.awt.Font("Century Gothic", 1, 13)); // NOI18N
+        labelTitle6.setForeground(new java.awt.Color(250, 103, 31));
+        labelTitle6.setText("Rating");
+        panelAddMovies.add(labelTitle6, new org.netbeans.lib.awtextra.AbsoluteConstraints(610, 185, 70, 20));
+
+        dropdownRating.setFont(new java.awt.Font("Arial Rounded MT Bold", 0, 12)); // NOI18N
+        dropdownRating.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "1", "2", "3", "3", "4", "5", "6", "7", "8", "9", "10" }));
+        dropdownRating.setFocusable(false);
+        dropdownRating.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                dropdownRatingActionPerformed(evt);
+            }
+        });
+        panelAddMovies.add(dropdownRating, new org.netbeans.lib.awtextra.AbsoluteConstraints(610, 210, 50, 35));
+
+        dropIdLang.setText("idLang");
+        panelAddMovies.add(dropIdLang, new org.netbeans.lib.awtextra.AbsoluteConstraints(550, 215, 25, 35));
+
+        dropdownLang.setFont(new java.awt.Font("Arial Rounded MT Bold", 0, 12)); // NOI18N
+        dropdownLang.setFocusable(false);
+        dropdownLang.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                dropdownLangActionPerformed(evt);
+            }
+        });
+        panelAddMovies.add(dropdownLang, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 210, 170, 35));
+
+        labelTitle5.setFont(new java.awt.Font("Century Gothic", 1, 13)); // NOI18N
+        labelTitle5.setForeground(new java.awt.Color(250, 103, 31));
+        labelTitle5.setText("Language");
+        panelAddMovies.add(labelTitle5, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 185, 70, 20));
+
+        dropIdCat.setText("idCat");
+        panelAddMovies.add(dropIdCat, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 215, 25, 35));
+
+        dropdownCat.setFont(new java.awt.Font("Arial Rounded MT Bold", 0, 12)); // NOI18N
+        dropdownCat.setFocusable(false);
+        dropdownCat.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                dropdownCatActionPerformed(evt);
+            }
+        });
+        panelAddMovies.add(dropdownCat, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 210, 170, 35));
+
+        labelTitle4.setFont(new java.awt.Font("Century Gothic", 1, 13)); // NOI18N
+        labelTitle4.setForeground(new java.awt.Color(250, 103, 31));
+        labelTitle4.setText("Category");
+        panelAddMovies.add(labelTitle4, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 185, 70, 20));
+
+        labelTitle3.setFont(new java.awt.Font("Century Gothic", 0, 13)); // NOI18N
+        labelTitle3.setForeground(new java.awt.Color(250, 103, 31));
+        labelTitle3.setText("minutes");
+        panelAddMovies.add(labelTitle3, new org.netbeans.lib.awtextra.AbsoluteConstraints(660, 145, 70, 20));
+
+        inputLength.setFont(new java.awt.Font("Arial Rounded MT Bold", 0, 14)); // NOI18N
+        inputLength.setForeground(new java.awt.Color(153, 153, 153));
+        inputLength.setText("Length");
+        inputLength.setToolTipText("Enter Movie Title");
+        inputLength.setBorder(null);
+        inputLength.setOpaque(false);
+        inputLength.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                inputLengthFocusGained(evt);
+            }
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                inputLengthFocusLost(evt);
+            }
+        });
+        panelAddMovies.add(inputLength, new org.netbeans.lib.awtextra.AbsoluteConstraints(590, 140, 60, 30));
+
+        jSeparator3.setBackground(new java.awt.Color(204, 204, 204));
+        jSeparator3.setForeground(new java.awt.Color(255, 255, 255));
+        panelAddMovies.add(jSeparator3, new org.netbeans.lib.awtextra.AbsoluteConstraints(590, 170, 60, 10));
+
+        labelTitle2.setFont(new java.awt.Font("Century Gothic", 1, 13)); // NOI18N
+        labelTitle2.setForeground(new java.awt.Color(250, 103, 31));
+        labelTitle2.setText("Movie Length");
+        panelAddMovies.add(labelTitle2, new org.netbeans.lib.awtextra.AbsoluteConstraints(590, 120, 100, 20));
+
+        inputYear.setFont(new java.awt.Font("Arial Rounded MT Bold", 0, 14)); // NOI18N
+        inputYear.setForeground(new java.awt.Color(153, 153, 153));
+        inputYear.setText("Enter movie year");
+        inputYear.setToolTipText("Enter Movie Title");
+        inputYear.setBorder(null);
+        inputYear.setOpaque(false);
+        inputYear.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                inputYearFocusGained(evt);
+            }
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                inputYearFocusLost(evt);
+            }
+        });
+        panelAddMovies.add(inputYear, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 140, 120, 30));
+
+        jSeparator2.setBackground(new java.awt.Color(204, 204, 204));
+        jSeparator2.setForeground(new java.awt.Color(255, 255, 255));
+        panelAddMovies.add(jSeparator2, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 170, 120, 10));
+
+        labelTitle1.setFont(new java.awt.Font("Century Gothic", 1, 13)); // NOI18N
+        labelTitle1.setForeground(new java.awt.Color(250, 103, 31));
+        labelTitle1.setText("Year");
+        panelAddMovies.add(labelTitle1, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 120, 70, 20));
+
+        inputTitle.setFont(new java.awt.Font("Arial Rounded MT Bold", 0, 14)); // NOI18N
+        inputTitle.setForeground(new java.awt.Color(153, 153, 153));
+        inputTitle.setText("Enter movie title");
+        inputTitle.setToolTipText("Enter Movie Title");
+        inputTitle.setBorder(null);
+        inputTitle.setOpaque(false);
+        inputTitle.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                inputTitleFocusGained(evt);
+            }
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                inputTitleFocusLost(evt);
+            }
+        });
+        panelAddMovies.add(inputTitle, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 140, 260, 30));
+
+        jSeparator1.setBackground(new java.awt.Color(204, 204, 204));
+        jSeparator1.setForeground(new java.awt.Color(255, 255, 255));
+        panelAddMovies.add(jSeparator1, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 170, 260, 10));
+
+        labelTitle.setFont(new java.awt.Font("Century Gothic", 1, 13)); // NOI18N
+        labelTitle.setForeground(new java.awt.Color(250, 103, 31));
+        labelTitle.setText("Title");
+        panelAddMovies.add(labelTitle, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 120, 70, 20));
+
+        bgAddMovies.setIcon(new javax.swing.ImageIcon(getClass().getResource("/bgaddmovie.png"))); // NOI18N
+        panelAddMovies.add(bgAddMovies, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 900, 650));
+
+        getContentPane().add(panelAddMovies, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 900, 650));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -393,7 +1105,7 @@ public class Movies extends javax.swing.JFrame {
     private void menuMoviesHeadMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_menuMoviesHeadMouseClicked
         // TODO add your handling code here:
         panelDashboard.setVisible(false);
-        panelCategories.setVisible(false);
+        panelOthers.setVisible(false);
         panelMovies.setVisible(false);
         panelMoviesHead.setVisible(true);
     }//GEN-LAST:event_menuMoviesHeadMouseClicked
@@ -402,11 +1114,14 @@ public class Movies extends javax.swing.JFrame {
         // TODO add your handling code here:
         panelDashboard.setVisible(false);
         panelMoviesHead.setVisible(false);
-        panelCategories.setVisible(false);
+        panelOthers.setVisible(false);
         panelMovies.setVisible(true);
         mainPageDashboard.setVisible(false);
         mainPageMovies.setVisible(true);
-        mainPageCategories.setVisible(false);
+        mainPageOthers.setVisible(false);
+        hidePanelOthers();
+        jScrollPane1.setVisible(true);
+        jTable1Load();
         panelSortDef.setVisible(true);
         panelSortTitle.setVisible(false);
         panelSortYear.setVisible(false);
@@ -418,30 +1133,38 @@ public class Movies extends javax.swing.JFrame {
         panelDashboard.setVisible(true);
         panelMoviesHead.setVisible(false);
         panelMovies.setVisible(false);
-        panelCategories.setVisible(false);
+        panelOthers.setVisible(false);
         mainPageMovies.setVisible(false);
-        mainPageCategories.setVisible(false);
+        clearTable();
+        mainPageOthers.setVisible(false);
+        hidePanelOthers();
     }//GEN-LAST:event_menuDashboard1MouseClicked
 
     private void menuCategoriesMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_menuCategoriesMouseClicked
         // TODO add your handling code here:
-        panelCategories.setVisible(true);
+        panelOthers.setVisible(true);
         panelDashboard.setVisible(false);
         panelMoviesHead.setVisible(false);
         panelMovies.setVisible(false);
-        mainPageCategories.setVisible(true);
+        mainPageOthers.setVisible(true);
+        loadTableCat();
+        loadTableLang();
         mainPageMovies.setVisible(false);
+        clearTable();
         mainPageDashboard.setVisible(false);
     }//GEN-LAST:event_menuCategoriesMouseClicked
 
     private void menuCategories1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_menuCategories1MouseClicked
         // TODO add your handling code here:
-        panelCategories.setVisible(true);
+        panelOthers.setVisible(true);
         panelDashboard.setVisible(false);
         panelMoviesHead.setVisible(false);
         panelMovies.setVisible(false);
-        mainPageCategories.setVisible(true);
+        mainPageOthers.setVisible(true);
+        loadTableCat();
+        loadTableLang();
         mainPageMovies.setVisible(false);
+        clearTable();
         mainPageDashboard.setVisible(false);
     }//GEN-LAST:event_menuCategories1MouseClicked
 
@@ -451,18 +1174,23 @@ public class Movies extends javax.swing.JFrame {
         mainPageDashboard.setVisible(true);
         panelMoviesHead.setVisible(false);
         mainPageMovies.setVisible(false);
-        mainPageCategories.setVisible(false);
+        clearTable();
+        mainPageOthers.setVisible(false);
+        hidePanelOthers();
     }//GEN-LAST:event_menuDashboard2MouseClicked
 
     private void menuMovies2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_menuMovies2MouseClicked
         // TODO add your handling code here:
         panelDashboard.setVisible(false);
         panelMoviesHead.setVisible(false);
-        panelCategories.setVisible(false);
+        panelOthers.setVisible(false);
         panelMovies.setVisible(true);
         mainPageDashboard.setVisible(false);
         mainPageMovies.setVisible(true);
-        mainPageCategories.setVisible(false);
+        mainPageOthers.setVisible(false);
+        hidePanelOthers();
+        jScrollPane1.setVisible(true);
+        jTable1Load();
         panelSortDef.setVisible(true);
         panelSortTitle.setVisible(false);
         panelSortYear.setVisible(false);
@@ -475,9 +1203,11 @@ public class Movies extends javax.swing.JFrame {
         mainPageDashboard.setVisible(true);
         panelMoviesHead.setVisible(false);
         panelMovies.setVisible(false);
-        panelCategories.setVisible(false);
+        panelOthers.setVisible(false);
         mainPageMovies.setVisible(false);
-        mainPageCategories.setVisible(false);
+        clearTable();
+        mainPageOthers.setVisible(false);
+        hidePanelOthers();
     }//GEN-LAST:event_menuDashboard3MouseClicked
 
     private void sortTitleDefMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_sortTitleDefMouseClicked
@@ -486,6 +1216,8 @@ public class Movies extends javax.swing.JFrame {
         panelSortTitle.setVisible(true);
         panelSortYear.setVisible(false);
         panelSortRating.setVisible(false);
+        clearTable();
+        sortTitle();
     }//GEN-LAST:event_sortTitleDefMouseClicked
 
     private void sortYearDefMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_sortYearDefMouseClicked
@@ -494,6 +1226,8 @@ public class Movies extends javax.swing.JFrame {
         panelSortTitle.setVisible(false);
         panelSortYear.setVisible(true);
         panelSortRating.setVisible(false);
+        clearTable();
+        sortYear();
     }//GEN-LAST:event_sortYearDefMouseClicked
 
     private void sortRatingDefMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_sortRatingDefMouseClicked
@@ -502,6 +1236,8 @@ public class Movies extends javax.swing.JFrame {
         panelSortTitle.setVisible(false);
         panelSortYear.setVisible(false);
         panelSortRating.setVisible(true);
+        clearTable();
+        sortRating();
     }//GEN-LAST:event_sortRatingDefMouseClicked
 
     private void sortYearTitleMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_sortYearTitleMouseClicked
@@ -510,6 +1246,8 @@ public class Movies extends javax.swing.JFrame {
         panelSortTitle.setVisible(false);
         panelSortYear.setVisible(true);
         panelSortRating.setVisible(false);
+        clearTable();
+        sortYear();
     }//GEN-LAST:event_sortYearTitleMouseClicked
 
     private void sortRatingTitleMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_sortRatingTitleMouseClicked
@@ -518,6 +1256,8 @@ public class Movies extends javax.swing.JFrame {
         panelSortTitle.setVisible(false);
         panelSortYear.setVisible(false);
         panelSortRating.setVisible(true);
+        clearTable();
+        sortRating();
     }//GEN-LAST:event_sortRatingTitleMouseClicked
 
     private void sortTitleYearMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_sortTitleYearMouseClicked
@@ -526,6 +1266,8 @@ public class Movies extends javax.swing.JFrame {
         panelSortTitle.setVisible(true);
         panelSortYear.setVisible(false);
         panelSortRating.setVisible(false);
+        clearTable();
+        sortTitle();
     }//GEN-LAST:event_sortTitleYearMouseClicked
 
     private void sortRatingYearMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_sortRatingYearMouseClicked
@@ -534,6 +1276,8 @@ public class Movies extends javax.swing.JFrame {
         panelSortTitle.setVisible(false);
         panelSortYear.setVisible(false);
         panelSortRating.setVisible(true);
+        clearTable();
+        sortRating();
     }//GEN-LAST:event_sortRatingYearMouseClicked
 
     private void sortTitleRatingMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_sortTitleRatingMouseClicked
@@ -542,6 +1286,8 @@ public class Movies extends javax.swing.JFrame {
         panelSortTitle.setVisible(true);
         panelSortYear.setVisible(false);
         panelSortRating.setVisible(false);
+        clearTable();
+        sortTitle();
     }//GEN-LAST:event_sortTitleRatingMouseClicked
 
     private void sortYearRatingMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_sortYearRatingMouseClicked
@@ -550,75 +1296,607 @@ public class Movies extends javax.swing.JFrame {
         panelSortTitle.setVisible(false);
         panelSortYear.setVisible(true);
         panelSortRating.setVisible(false);
+        clearTable();
+        sortYear();
     }//GEN-LAST:event_sortYearRatingMouseClicked
 
-    private void jTable1FocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jTable1FocusGained
+    private void btnDeleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDeleteActionPerformed
+        // TODO add your handling code here:
+        int terpilih = jTable1.getSelectedRow();
+        if(terpilih > 0){
+            int opsi = JOptionPane.showConfirmDialog(null, "Do you really want to delete these record? This process cannot be undone.", "Penghapusan Data", JOptionPane.YES_NO_OPTION);
+            if (opsi == JOptionPane.YES_OPTION){
+                Connection koneksi;
+                KoneksiDatabase daftarFilm = new KoneksiDatabase();
+                koneksi = daftarFilm.getConnection(); 
+                String querys = "DELETE FROM `film` WHERE ID = ?";
+                try{
+                    PreparedStatement pstmt = koneksi.prepareStatement(querys);
+                    int BarisTerpilih = jTable1.getSelectedRow();
+                    pstmt.setInt(1, Integer.parseInt(jTable1.getModel().getValueAt(BarisTerpilih, 0).toString()));
+                    pstmt.executeUpdate();
+                    JOptionPane.showMessageDialog(null, "Movie deleted successfully..");
+                }catch(SQLException ex){
+                    Logger.getLogger (Movies.class.getName()).log(Level.SEVERE, null, ex);
+                }
+                DefaultTableModel modelTablenya = (DefaultTableModel)jTable1.getModel();
+                
+                modelTablenya.removeRow(terpilih);
+                countData();
+            } else {
+
+            }
+        } else {
+            JOptionPane.showMessageDialog(null, "No record seleced!!!");
+        }
+        
+    }//GEN-LAST:event_btnDeleteActionPerformed
+
+    private void inputTitleFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_inputTitleFocusGained
+        // TODO add your handling code here:
+        if (inputTitle.getText().equals("Enter movie title")) {
+            inputTitle.setText("");
+        } else {
+            String a = inputTitle.getText();
+            inputTitle.setText(a);
+        }
+    }//GEN-LAST:event_inputTitleFocusGained
+
+    private void inputTitleFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_inputTitleFocusLost
+        // TODO add your handling code here:
+        if (inputTitle.getText().isEmpty()) {
+            inputTitle.setForeground(new Color(153,153,153));
+            inputTitle.setText("Enter movie title");
+        }
+    }//GEN-LAST:event_inputTitleFocusLost
+
+    private void inputYearFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_inputYearFocusGained
+        // TODO add your handling code here:
+        if (inputYear.getText().equals("Enter movie year")) {
+            inputYear.setText("");
+        } else {
+            String a = inputYear.getText();
+            inputYear.setText(a);
+        }
+    }//GEN-LAST:event_inputYearFocusGained
+
+    private void inputYearFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_inputYearFocusLost
+        // TODO add your handling code here:
+        if (inputYear.getText().isEmpty()) {
+            inputYear.setForeground(new Color(153,153,153));
+            inputYear.setText("Enter movie year");
+        }
+    }//GEN-LAST:event_inputYearFocusLost
+
+    private void inputLengthFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_inputLengthFocusGained
+        // TODO add your handling code here:
+        if (inputLength.getText().equals("Length")) {
+            inputLength.setText("");
+        } else {
+            String a = inputLength.getText();
+            inputLength.setText(a);
+        }
+    }//GEN-LAST:event_inputLengthFocusGained
+
+    private void inputLengthFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_inputLengthFocusLost
+        // TODO add your handling code here:
+        if (inputLength.getText().isEmpty()) {
+            inputLength.setForeground(new Color(153,153,153));
+            inputLength.setText("Length");
+        }
+    }//GEN-LAST:event_inputLengthFocusLost
+
+    private void addMoviesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addMoviesActionPerformed
+        // TODO add your handling code here:
+        loadDropCat();
+        loadDropLang();
+        dropIdCat.setVisible(false);
+        dropIdLang.setVisible(false);
+        panelAddMovies.setVisible(true);
+        panelUpdateMovies.setVisible(false);
+        panelDashboard.setVisible(false);
+        panelMoviesHead.setVisible(false);
+        panelOthers.setVisible(false);
+        panelMovies.setVisible(false);
+        mainPageDashboard.setVisible(false);
+        mainPageMovies.setVisible(false);
+        mainPageOthers.setVisible(false);
+        hidePanelOthers();
+        jScrollPane1.setVisible(false);
+//        jTable1Load();
+        panelSortDef.setVisible(false);
+        panelSortTitle.setVisible(false);
+        panelSortYear.setVisible(false);
+        panelSortRating.setVisible(false);
+    }//GEN-LAST:event_addMoviesActionPerformed
+
+    private void closeAddMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_closeAddMouseClicked
+        // TODO add your handling code here:
+        clearTable();
+        dropdownCat.removeAllItems();
+        dropdownLang.removeAllItems();
+        panelAddMovies.setVisible(false);
+        panelDashboard.setVisible(false);
+        panelMoviesHead.setVisible(false);
+        panelOthers.setVisible(false);
+        panelMovies.setVisible(true);
+        mainPageDashboard.setVisible(false);
+        mainPageMovies.setVisible(true);
+        mainPageOthers.setVisible(false);
+        hidePanelOthers();
+        jScrollPane1.setVisible(true);
+        jTable1Load();
+        panelSortDef.setVisible(true);
+        panelSortTitle.setVisible(false);
+        panelSortYear.setVisible(false);
+        panelSortRating.setVisible(false);
+    }//GEN-LAST:event_closeAddMouseClicked
+
+    private void btnSubmitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSubmitActionPerformed
+        // TODO add your handling code here:
         Connection koneksi;
-        KoneksiDatabase daftarFilm = new KoneksiDatabase();
-        koneksi = daftarFilm.getConnection();
+        KoneksiDatabase tambahFilm = new KoneksiDatabase();
+        koneksi = tambahFilm.getConnection();
+        String querys = "INSERT INTO film (languageID, title, description, "
+                + "Release_year, Rental_Duration, Rental_Rate, Length, Replacement_cost, "
+                + "rating, Special_Features, Fulltex) VALUES(?, ?, ?, ?,"
+                + "?, ?, ?, ?, ?, ?, ?)";
+        String txtareaSpecFeat = textareaSpecFeat.getText();
+        if (txtareaSpecFeat.equals("Enter special features")){
+            txtareaSpecFeat = "";
+        }
+        String txtareaFulltext = textareaFullText.getText();
+        if (txtareaFulltext.equals("Enter fulltext")){
+            txtareaFulltext = "";
+        }
+        try{
+            PreparedStatement pstmt = koneksi.prepareStatement(querys, Statement.RETURN_GENERATED_KEYS);
+            pstmt.setInt(1, Integer.parseInt(dropIdLang.getText().toString()));
+            pstmt.setString(2, inputTitle.getText());
+            pstmt.setString(3, textareaDesc.getText());
+            pstmt.setInt(4, Integer.parseInt(inputYear.getText().toString()));
+            pstmt.setInt(5, Integer.parseInt(inputRentalDur.getText().toString()));
+            pstmt.setInt(6, Integer.parseInt(inputRentalRate.getText().toString()));
+            pstmt.setInt(7, Integer.parseInt(inputLength.getText().toString()));
+            pstmt.setInt(8, Integer.parseInt(inputRentalRepCost.getText().toString()));
+            pstmt.setInt(9, Integer.parseInt(dropdownRating.getSelectedItem().toString()));
+            pstmt.setString(10, txtareaSpecFeat);
+            pstmt.setString(11, txtareaFulltext);
+            pstmt.executeUpdate();
+            ResultSet rs = pstmt.getGeneratedKeys();
+            if(rs.next()){
+                String id = rs.getString(1);
+                insertFilmCat(id);
+            }
+            JOptionPane.showMessageDialog(null, "Movie added successfully..");
+            dropdownCat.removeAllItems();
+            dropdownLang.removeAllItems();
+            clearTable();
+            jTable1Load();
+            panelAddMovies.setVisible(false);
+            panelDashboard.setVisible(false);
+            panelMoviesHead.setVisible(false);
+            panelOthers.setVisible(false);
+            panelMovies.setVisible(true);
+            mainPageDashboard.setVisible(false);
+            mainPageMovies.setVisible(true);
+            mainPageOthers.setVisible(false);
+            hidePanelOthers();
+            jScrollPane1.setVisible(true);
+            panelSortDef.setVisible(true);
+            panelSortTitle.setVisible(false);
+            panelSortYear.setVisible(false);
+            panelSortRating.setVisible(false);
+            clearFields();
+        }catch(SQLException ex){
+            Logger.getLogger (Movies.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_btnSubmitActionPerformed
+
+    private void dropdownCatActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_dropdownCatActionPerformed
+        // TODO add your handling code here:
+        Connection koneksi;
+        KoneksiDatabase catdata = new KoneksiDatabase();
+        koneksi = catdata.getConnection();
         try{
             Statement st = koneksi.createStatement();
-            String sql = "select * from film";
-            ResultSet rs = st.executeQuery(sql);
-            String bahasaFilm = "";
+            String sql = "select * from category where name = ?";
+            PreparedStatement pstmt = koneksi.prepareStatement(sql);
+            pstmt.setString(1, (String)dropdownCat.getSelectedItem());
+            ResultSet rs = pstmt.executeQuery();
             while(rs.next()){
-                Integer noFilm = Integer.valueOf(rs.getString("ID"));
-                String namaFilm = String.valueOf(rs.getString("title"));
-                Integer tahunRilis = Integer.valueOf(rs.getString("Release_year"));
-                Integer ratingFilm = Integer.valueOf(rs.getString("rating"));
-                String deskripsiFilm = String.valueOf(rs.getString("description"));
-                switch(String.valueOf(rs.getString("languageID"))){
-                case "1":
-                    bahasaFilm = "Indonesia";
-                    break;
-                case "2":
-                    bahasaFilm = "English";
-                    break;
-                case "3":
-                    bahasaFilm = "Japan";
-                    break;
-                case "4":
-                    bahasaFilm = "China";
-                    break;
-                case "5":
-                    bahasaFilm = "Thailand";
-                    break;
-                case "6":
-                    bahasaFilm = "India";
-                    break;
-                case "7":
-                    bahasaFilm = "German";
-                    break;    
-            }
-                
-                String iniTable[] = {noFilm.toString(), namaFilm, tahunRilis.toString(), deskripsiFilm, ratingFilm.toString(), bahasaFilm};
-                DefaultTableModel modelTablenya = (DefaultTableModel)jTable1.getModel();
-                modelTablenya.addRow(iniTable);
-            }
-            System.out.println("Tabel Film berhasil muncul!");
+                Integer id = Integer.valueOf(rs.getString("id"));
+                dropIdCat.setText(rs.getString("id"));
+            }            
         }catch(SQLException ex){
             Logger.getLogger (Movies.class.getName()).log(Level.SEVERE, null, ex);
         }
-    }//GEN-LAST:event_jTable1FocusGained
+    }//GEN-LAST:event_dropdownCatActionPerformed
 
-    private void btnDeleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDeleteActionPerformed
+    private void dropdownLangActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_dropdownLangActionPerformed
+        // TODO add your handling code here:
         Connection koneksi;
-        KoneksiDatabase daftarFilm = new KoneksiDatabase();
-        koneksi = daftarFilm.getConnection(); 
-        String querys = "DELETE FROM `film` WHERE ID = ?";
+        KoneksiDatabase catlang = new KoneksiDatabase();
+        koneksi = catlang.getConnection();
         try{
-            PreparedStatement pstmt = koneksi.prepareStatement(querys);
-            int BarisTerpilih = jTable1.getSelectedRow();
-            pstmt.setInt(1, Integer.parseInt(jTable1.getModel().getValueAt(BarisTerpilih, 0).toString()));
-            pstmt.executeUpdate();
-            System.out.println("Film berhasil ditambahkan!");
+            Statement st = koneksi.createStatement();
+            String sql = "select * from language where name = ?";
+            PreparedStatement pstmt = koneksi.prepareStatement(sql);
+            pstmt.setString(1, (String)dropdownLang.getSelectedItem());
+            ResultSet rs = pstmt.executeQuery();
+            while(rs.next()){
+                Integer id = Integer.valueOf(rs.getString("ID"));
+                dropIdLang.setText(rs.getString("ID"));
+            }            
         }catch(SQLException ex){
             Logger.getLogger (Movies.class.getName()).log(Level.SEVERE, null, ex);
         }
-        DefaultTableModel modelTablenya = (DefaultTableModel)jTable1.getModel();
-        int terpilih = jTable1.getSelectedRow();
-                modelTablenya.removeRow(terpilih);
-    }//GEN-LAST:event_btnDeleteActionPerformed
+    }//GEN-LAST:event_dropdownLangActionPerformed
+
+    private void dropdownRatingActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_dropdownRatingActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_dropdownRatingActionPerformed
+
+    private void textareaDescFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_textareaDescFocusGained
+        // TODO add your handling code here:
+        if (textareaDesc.getText().equals("Enter movie description")) {
+            textareaDesc.setText("");
+        } else {
+            String a = textareaDesc.getText();
+            textareaDesc.setText(a);
+        }
+    }//GEN-LAST:event_textareaDescFocusGained
+
+    private void textareaDescFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_textareaDescFocusLost
+        // TODO add your handling code here:
+        if (textareaDesc.getText().isEmpty()) {
+            textareaDesc.setForeground(new Color(153,153,153));
+            textareaDesc.setText("Enter movie description");
+        }
+    }//GEN-LAST:event_textareaDescFocusLost
+
+    private void inputRentalRateFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_inputRentalRateFocusGained
+        // TODO add your handling code here:
+        if (inputRentalRate.getText().equals("Enter rental rate")) {
+            inputRentalRate.setText("");
+        } else {
+            String a = inputRentalRate.getText();
+            inputRentalRate.setText(a);
+        }
+    }//GEN-LAST:event_inputRentalRateFocusGained
+
+    private void inputRentalRateFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_inputRentalRateFocusLost
+        // TODO add your handling code here:
+        if (inputRentalRate.getText().isEmpty()) {
+            inputRentalRate.setForeground(new Color(153,153,153));
+            inputRentalRate.setText("Enter rental rate");
+        }
+    }//GEN-LAST:event_inputRentalRateFocusLost
+
+    private void inputRentalDurFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_inputRentalDurFocusGained
+        // TODO add your handling code here:
+        if (inputRentalDur.getText().equals("Duration")) {
+            inputRentalDur.setText("");
+        } else {
+            String a = inputRentalDur.getText();
+            inputRentalDur.setText(a);
+        }
+    }//GEN-LAST:event_inputRentalDurFocusGained
+
+    private void inputRentalDurFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_inputRentalDurFocusLost
+        // TODO add your handling code here:
+        if (inputRentalDur.getText().isEmpty()) {
+            inputRentalDur.setForeground(new Color(153,153,153));
+            inputRentalDur.setText("Duration");
+        }
+    }//GEN-LAST:event_inputRentalDurFocusLost
+
+    private void inputRentalRepCostFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_inputRentalRepCostFocusGained
+        // TODO add your handling code here:
+        if (inputRentalRepCost.getText().equals("Enter replacement cost")) {
+            inputRentalRepCost.setText("");
+        } else {
+            String a = inputRentalRepCost.getText();
+            inputRentalRepCost.setText(a);
+        }
+    }//GEN-LAST:event_inputRentalRepCostFocusGained
+
+    private void inputRentalRepCostFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_inputRentalRepCostFocusLost
+        // TODO add your handling code here:
+        if (inputRentalDur.getText().isEmpty()) {
+            inputRentalDur.setForeground(new Color(153,153,153));
+            inputRentalDur.setText("Enter replacement cost");
+        }
+    }//GEN-LAST:event_inputRentalRepCostFocusLost
+
+    private void textareaSpecFeatFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_textareaSpecFeatFocusGained
+        // TODO add your handling code here:
+        if (textareaSpecFeat.getText().equals("Enter special features")) {
+            textareaSpecFeat.setText("");
+        } else {
+            String a = textareaSpecFeat.getText();
+            textareaSpecFeat.setText(a);
+        }
+    }//GEN-LAST:event_textareaSpecFeatFocusGained
+
+    private void textareaSpecFeatFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_textareaSpecFeatFocusLost
+        // TODO add your handling code here:
+        if (textareaSpecFeat.getText().isEmpty()) {
+            textareaSpecFeat.setForeground(new Color(153,153,153));
+            textareaSpecFeat.setText("Enter special features");
+        }
+    }//GEN-LAST:event_textareaSpecFeatFocusLost
+
+    private void textareaFullTextFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_textareaFullTextFocusGained
+        // TODO add your handling code here:
+        if (textareaFullText.getText().equals("Enter fulltext")) {
+            textareaFullText.setText("");
+        } else {
+            String a = textareaFullText.getText();
+            textareaFullText.setText(a);
+        }
+    }//GEN-LAST:event_textareaFullTextFocusGained
+
+    private void textareaFullTextFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_textareaFullTextFocusLost
+        // TODO add your handling code here:
+        if (textareaFullText.getText().isEmpty()) {
+            textareaFullText.setForeground(new Color(153,153,153));
+            textareaFullText.setText("Enter fulltext");
+        }
+    }//GEN-LAST:event_textareaFullTextFocusLost
+
+    private void btnSubmitUpdateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSubmitUpdateActionPerformed
+        // TODO add your handling code here:        
+        Integer id = Integer.parseInt(idMovieUpdate.getText().toString());
+        Integer val1 = Integer.parseInt(dropIdLangUpdate.getText().toString());
+        String val2 = inputTitleUpdate.getText();
+        String val3 = textareaDescUpdate.getText();
+        Integer val4 = Integer.parseInt(inputYearUpdate.getText().toString());
+        Integer val5 = Integer.parseInt(inputRentalDurUpdate.getText().toString());
+        Integer val6 = Integer.parseInt(inputRentalRateUpdate.getText().toString());
+        Integer val7 = Integer.parseInt(inputLengthUpdate.getText().toString());
+        Integer val8 = Integer.parseInt(inputRentalRepCostUpdate.getText().toString());
+        Integer val9 = Integer.parseInt(dropdownRatingUpdate.getSelectedItem().toString());
+        String val10 = textareaSpecFeatUpdate.getText();
+        if (val10.equals("Enter special features")){
+            val10 = "";
+        }
+        String val11 = textareaFullTextUpdate.getText();
+        if (val11.equals("Enter fulltext")){
+            val11 = "";
+        }
+                
+        Connection koneksi;
+        KoneksiDatabase UpdateFilm = new KoneksiDatabase();
+        koneksi = UpdateFilm.getConnection(); 
+        String querys;
+        if(val10.equals("Enter special features") || val11.equals("Enter fulltext")){
+            querys = "UPDATE film SET "
+                + "languageID='"+val1+"',"
+                + "title='"+val2+"',"
+                + "description='"+val3+"',"
+                + "Release_year='"+val4+"',"
+                + "Rental_Duration='"+val5+"',"
+                + "Rental_Rate='"+val6+"',"
+                + "Length='"+val7+"',"
+                + "Replacement_cost='"+val8+"',"
+                + "rating='"+val9+"' WHERE ID = '"+id+"'";
+        } else {
+            querys = "UPDATE film SET "
+                + "languageID='"+val1+"',"
+                + "title='"+val2+"',"
+                + "description='"+val3+"',"
+                + "Release_year='"+val4+"',"
+                + "Rental_Duration='"+val5+"',"
+                + "Rental_Rate='"+val6+"',"
+                + "Length='"+val7+"',"
+                + "Replacement_cost='"+val8+"',"
+                + "rating='"+val9+"',"
+                + "Special_Features='"+val10+"',"
+                + "Fulltex='"+val11+"' WHERE ID = '"+id+"'";
+        }
+        try {
+            PreparedStatement pstmt = koneksi.prepareStatement(querys);
+            pstmt.executeUpdate();
+            updateFilmCat(id);
+        } catch (SQLException ex) {
+            Logger.getLogger(Movies.class.getName()).log(Level.SEVERE, null, ex);
+        }
+       
+        JOptionPane.showMessageDialog(null, "Movie updated successfully..");
+        dropdownCat.removeAllItems();
+        dropdownLang.removeAllItems();
+        clearTable();
+        dropdownCatUpdate.removeAllItems();
+        dropdownLangUpdate.removeAllItems();
+        panelUpdateMovies.setVisible(false);
+        panelAddMovies.setVisible(false);
+        panelDashboard.setVisible(false);
+        panelMoviesHead.setVisible(false);
+        panelOthers.setVisible(false);
+        panelMovies.setVisible(true);
+        mainPageDashboard.setVisible(false);
+        mainPageMovies.setVisible(true);
+        mainPageOthers.setVisible(false);
+        hidePanelOthers();
+        jScrollPane1.setVisible(true);
+        jTable1Load();
+        panelSortDef.setVisible(true);
+        panelSortTitle.setVisible(false);
+        panelSortYear.setVisible(false);
+        panelSortRating.setVisible(false);
+    }//GEN-LAST:event_btnSubmitUpdateActionPerformed
+
+    private void closeUpdateMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_closeUpdateMouseClicked
+        // TODO add your handling code here:
+        clearTable();
+        dropdownCatUpdate.removeAllItems();
+        dropdownLangUpdate.removeAllItems();
+        panelUpdateMovies.setVisible(false);
+        panelAddMovies.setVisible(false);
+        panelDashboard.setVisible(false);
+        panelMoviesHead.setVisible(false);
+        panelOthers.setVisible(false);
+        panelMovies.setVisible(true);
+        mainPageDashboard.setVisible(false);
+        mainPageMovies.setVisible(true);
+        mainPageOthers.setVisible(false);
+        hidePanelOthers();
+        jScrollPane1.setVisible(true);
+        jTable1Load();
+        panelSortDef.setVisible(true);
+        panelSortTitle.setVisible(false);
+        panelSortYear.setVisible(false);
+        panelSortRating.setVisible(false);
+    }//GEN-LAST:event_closeUpdateMouseClicked
+
+    private void dropdownRatingUpdateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_dropdownRatingUpdateActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_dropdownRatingUpdateActionPerformed
+
+    private void dropdownLangUpdateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_dropdownLangUpdateActionPerformed
+        // TODO add your handling code here:
+        Connection koneksi;
+        KoneksiDatabase catlang = new KoneksiDatabase();
+        koneksi = catlang.getConnection();
+        try{
+            Statement st = koneksi.createStatement();
+            String sql = "select * from language where name = ?";
+            PreparedStatement pstmt = koneksi.prepareStatement(sql);
+            pstmt.setString(1, (String)dropdownLangUpdate.getSelectedItem());
+            ResultSet rs = pstmt.executeQuery();
+            while(rs.next()){
+                Integer id = Integer.valueOf(rs.getString("ID"));
+                dropIdLangUpdate.setText(rs.getString("ID"));
+            }            
+        }catch(SQLException ex){
+            Logger.getLogger (Movies.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_dropdownLangUpdateActionPerformed
+
+    private void dropdownCatUpdateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_dropdownCatUpdateActionPerformed
+        // TODO add your handling code here:
+        Connection koneksi;
+        KoneksiDatabase catdata = new KoneksiDatabase();
+        koneksi = catdata.getConnection();
+        try{
+            Statement st = koneksi.createStatement();
+            String sql = "select * from category where name = ?";
+            PreparedStatement pstmt = koneksi.prepareStatement(sql);
+            pstmt.setString(1, (String)dropdownCatUpdate.getSelectedItem());
+            ResultSet rs = pstmt.executeQuery();
+            while(rs.next()){
+                Integer id = Integer.valueOf(rs.getString("id"));
+                dropIdCatUpdate.setText(rs.getString("id"));
+            }            
+        }catch(SQLException ex){
+            Logger.getLogger (Movies.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_dropdownCatUpdateActionPerformed
+
+    private void btnUpdateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUpdateActionPerformed
+        // TODO add your handling code here:
+        int BarisTerpilih = jTable1.getSelectedRow();
+        if(BarisTerpilih > 0){
+            loadDropCat();
+            loadDropLang();
+            idMovieUpdate.setVisible(false);
+            dropIdCatUpdate.setVisible(false);
+            dropIdLangUpdate.setVisible(false);
+            panelUpdateMovies.setVisible(true);
+            panelAddMovies.setVisible(false);
+            panelDashboard.setVisible(false);
+            panelMoviesHead.setVisible(false);
+            panelOthers.setVisible(false);
+            panelMovies.setVisible(false);
+            mainPageDashboard.setVisible(false);
+            mainPageMovies.setVisible(false);
+            mainPageOthers.setVisible(false);
+            hidePanelOthers();
+            jScrollPane1.setVisible(false);
+            panelSortDef.setVisible(false);
+            panelSortTitle.setVisible(false);
+            panelSortYear.setVisible(false);
+            panelSortRating.setVisible(false);
+            
+            Integer id = Integer.parseInt(jTable1.getModel().getValueAt(BarisTerpilih, 0).toString());
+            Connection koneksi;
+            KoneksiDatabase catdata = new KoneksiDatabase();
+            koneksi = catdata.getConnection();
+            try{
+                Statement st = koneksi.createStatement();
+                String sql = "SELECT * FROM film WHERE ID = ?";
+                PreparedStatement pstmt = koneksi.prepareStatement(sql);
+                pstmt.setInt(1, id);
+                ResultSet rs = pstmt.executeQuery();
+                while(rs.next()){
+                    idMovieUpdate.setText(rs.getString("ID"));
+                    inputTitleUpdate.setText(rs.getString("title"));
+                    inputYearUpdate.setText(rs.getString("Release_year"));
+                    inputLengthUpdate.setText(rs.getString("Length"));
+                    textareaDescUpdate.setText(rs.getString("description"));
+                    String specFeat = rs.getString("Special_Features");
+                    if(specFeat.equals("")){
+                        textareaSpecFeatUpdate.setText("Enter special features");
+                    } else {
+                        textareaSpecFeatUpdate.setText(specFeat);
+                    }
+                    String Fulltex = rs.getString("Fulltex");
+                    if(Fulltex.equals("")){
+                        textareaFullTextUpdate.setText("Enter fulltext");
+                    } else {
+                        textareaFullTextUpdate.setText(Fulltex);
+                    }
+                    inputRentalRateUpdate.setText(rs.getString("Rental_Rate"));
+                    inputRentalDurUpdate.setText(rs.getString("Rental_Duration"));
+                    inputRentalRepCostUpdate.setText(rs.getString("Replacement_cost"));
+                    loadDropLangUpdate(rs.getInt("languageID"));
+                    loadDropCatUpdate(id);
+                    dropdownRatingUpdate.setSelectedItem(rs.getString("rating"));
+                }            
+            }catch(SQLException ex){
+                Logger.getLogger (Movies.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        } else {
+            JOptionPane.showMessageDialog(null, "No record seleced!!!");
+        }
+    }//GEN-LAST:event_btnUpdateActionPerformed
+
+    private void textareaSpecFeatUpdateFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_textareaSpecFeatUpdateFocusGained
+        // TODO add your handling code here:
+        if (textareaSpecFeatUpdate.getText().equals("Enter special features")) {
+            textareaSpecFeatUpdate.setText("");
+        } else {
+            String a = textareaSpecFeatUpdate.getText();
+            textareaSpecFeatUpdate.setText(a);
+        }
+    }//GEN-LAST:event_textareaSpecFeatUpdateFocusGained
+
+    private void textareaSpecFeatUpdateFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_textareaSpecFeatUpdateFocusLost
+        // TODO add your handling code here:
+        if (textareaSpecFeatUpdate.getText().isEmpty()) {
+            textareaSpecFeatUpdate.setForeground(new Color(153,153,153));
+            textareaSpecFeatUpdate.setText("Enter special features");
+        }
+    }//GEN-LAST:event_textareaSpecFeatUpdateFocusLost
+
+    private void textareaFullTextUpdateFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_textareaFullTextUpdateFocusGained
+        // TODO add your handling code here:
+        if (textareaFullTextUpdate.getText().equals("Enter fulltext")) {
+            textareaFullTextUpdate.setText("");
+        } else {
+            String a = textareaFullTextUpdate.getText();
+            textareaFullTextUpdate.setText(a);
+        }
+    }//GEN-LAST:event_textareaFullTextUpdateFocusGained
+
+    private void textareaFullTextUpdateFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_textareaFullTextUpdateFocusLost
+        // TODO add your handling code here:
+        if (textareaFullTextUpdate.getText().isEmpty()) {
+            textareaFullTextUpdate.setForeground(new Color(153,153,153));
+            textareaFullTextUpdate.setText("Enter fulltext");
+        }
+    }//GEN-LAST:event_textareaFullTextUpdateFocusLost
 
     /**
      * @param args the command line arguments
@@ -657,16 +1935,97 @@ public class Movies extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton addMovies;
+    private javax.swing.JLabel bgAddMovies;
+    private javax.swing.JLabel bgUpdateMovie;
     private javax.swing.JButton btnDelete;
+    private javax.swing.JButton btnSubmit;
+    private javax.swing.JButton btnSubmitUpdate;
     private javax.swing.JButton btnUpdate;
+    private javax.swing.JLabel closeAdd;
+    private javax.swing.JLabel closeUpdate;
     private javax.swing.JLabel countCustomer;
     private javax.swing.JLabel countMovies;
     private javax.swing.JLabel countStaff;
+    private javax.swing.JLabel dropIdCat;
+    private javax.swing.JLabel dropIdCatUpdate;
+    private javax.swing.JLabel dropIdLang;
+    private javax.swing.JLabel dropIdLangUpdate;
+    private javax.swing.JComboBox<String> dropdownCat;
+    private javax.swing.JComboBox<String> dropdownCatUpdate;
+    private javax.swing.JComboBox<String> dropdownLang;
+    private javax.swing.JComboBox<String> dropdownLangUpdate;
+    private javax.swing.JComboBox<String> dropdownRating;
+    private javax.swing.JComboBox<String> dropdownRatingUpdate;
+    private javax.swing.JLabel idMovieUpdate;
+    private javax.swing.JTextField inputLength;
+    private javax.swing.JTextField inputLengthUpdate;
+    private javax.swing.JTextField inputRentalDur;
+    private javax.swing.JTextField inputRentalDurUpdate;
+    private javax.swing.JTextField inputRentalRate;
+    private javax.swing.JTextField inputRentalRateUpdate;
+    private javax.swing.JTextField inputRentalRepCost;
+    private javax.swing.JTextField inputRentalRepCostUpdate;
+    private javax.swing.JTextField inputTitle;
+    private javax.swing.JTextField inputTitleUpdate;
+    private javax.swing.JTextField inputYear;
+    private javax.swing.JTextField inputYearUpdate;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JScrollPane jScrollPane3;
+    private javax.swing.JScrollPane jScrollPane4;
+    private javax.swing.JScrollPane jScrollPane5;
+    private javax.swing.JScrollPane jScrollPane6;
+    private javax.swing.JScrollPane jScrollPane7;
+    private javax.swing.JScrollPane jScrollPaneCat;
+    private javax.swing.JScrollPane jScrollPaneLang;
+    private javax.swing.JSeparator jSeparator1;
+    private javax.swing.JSeparator jSeparator10;
+    private javax.swing.JSeparator jSeparator11;
+    private javax.swing.JSeparator jSeparator12;
+    private javax.swing.JSeparator jSeparator13;
+    private javax.swing.JSeparator jSeparator14;
+    private javax.swing.JSeparator jSeparator15;
+    private javax.swing.JSeparator jSeparator16;
+    private javax.swing.JSeparator jSeparator2;
+    private javax.swing.JSeparator jSeparator3;
+    private javax.swing.JSeparator jSeparator4;
+    private javax.swing.JSeparator jSeparator5;
+    private javax.swing.JSeparator jSeparator6;
+    private javax.swing.JSeparator jSeparator7;
+    private javax.swing.JSeparator jSeparator8;
+    private javax.swing.JSeparator jSeparator9;
     private javax.swing.JTable jTable1;
-    private javax.swing.JPanel mainPageCategories;
+    private javax.swing.JTable jTableCat;
+    private javax.swing.JTable jTableLang;
+    private javax.swing.JLabel labelTitle;
+    private javax.swing.JLabel labelTitle1;
+    private javax.swing.JLabel labelTitle10;
+    private javax.swing.JLabel labelTitle11;
+    private javax.swing.JLabel labelTitle12;
+    private javax.swing.JLabel labelTitle13;
+    private javax.swing.JLabel labelTitle14;
+    private javax.swing.JLabel labelTitle15;
+    private javax.swing.JLabel labelTitle16;
+    private javax.swing.JLabel labelTitle17;
+    private javax.swing.JLabel labelTitle18;
+    private javax.swing.JLabel labelTitle19;
+    private javax.swing.JLabel labelTitle2;
+    private javax.swing.JLabel labelTitle20;
+    private javax.swing.JLabel labelTitle21;
+    private javax.swing.JLabel labelTitle22;
+    private javax.swing.JLabel labelTitle23;
+    private javax.swing.JLabel labelTitle3;
+    private javax.swing.JLabel labelTitle4;
+    private javax.swing.JLabel labelTitle5;
+    private javax.swing.JLabel labelTitle6;
+    private javax.swing.JLabel labelTitle7;
+    private javax.swing.JLabel labelTitle8;
+    private javax.swing.JLabel labelTitle9;
     private javax.swing.JPanel mainPageDashboard;
     private javax.swing.JPanel mainPageMovies;
+    private javax.swing.JPanel mainPageOthers;
     private javax.swing.JLabel menuCategories;
     private javax.swing.JLabel menuCategories1;
     private javax.swing.JLabel menuDashboard;
@@ -676,17 +2035,19 @@ public class Movies extends javax.swing.JFrame {
     private javax.swing.JLabel menuMovies;
     private javax.swing.JLabel menuMovies2;
     private javax.swing.JLabel menuMoviesHead;
-    private javax.swing.JLabel pageCategories;
     private javax.swing.JLabel pageDashboard;
     private javax.swing.JLabel pageMovies;
-    private javax.swing.JPanel panelCategories;
+    private javax.swing.JLabel pageOthers;
+    private javax.swing.JPanel panelAddMovies;
     private javax.swing.JPanel panelDashboard;
     private javax.swing.JPanel panelMovies;
     private javax.swing.JPanel panelMoviesHead;
+    private javax.swing.JPanel panelOthers;
     private javax.swing.JPanel panelSortDef;
     private javax.swing.JPanel panelSortRating;
     private javax.swing.JPanel panelSortTitle;
     private javax.swing.JPanel panelSortYear;
+    private javax.swing.JPanel panelUpdateMovies;
     private javax.swing.JLabel sidebarCategories;
     private javax.swing.JLabel sidebarDashboard;
     private javax.swing.JLabel sidebarMovies;
@@ -708,5 +2069,356 @@ public class Movies extends javax.swing.JFrame {
     private javax.swing.JLabel sortYearTitle;
     private javax.swing.JLabel sortYearYear;
     private javax.swing.JLabel sortingLabel;
+    private javax.swing.JTextArea textareaDesc;
+    private javax.swing.JTextArea textareaDescUpdate;
+    private javax.swing.JTextArea textareaFullText;
+    private javax.swing.JTextArea textareaFullTextUpdate;
+    private javax.swing.JTextArea textareaSpecFeat;
+    private javax.swing.JTextArea textareaSpecFeatUpdate;
     // End of variables declaration//GEN-END:variables
+
+    private void firstShow() {
+        panelDashboard.setVisible(true);
+        mainPageDashboard.setVisible(true);
+        mainPageMovies.setVisible(false);
+        mainPageOthers.setVisible(false);
+        jScrollPane1.setVisible(false);
+        panelAddMovies.setVisible(false);
+        panelUpdateMovies.setVisible(false);
+        hidePanelOthers();
+    }
+    
+    private void countData() {
+        countMovies.setText(String.valueOf(getCountFilm()));
+        countCustomer.setText(String.valueOf(getCountCustomer()));
+        countStaff.setText(String.valueOf(getCountStaff()));
+    }
+    
+    public int getCountFilm(){
+        Connection koneksi;
+        KoneksiDatabase countFilm = new KoneksiDatabase();
+        koneksi = countFilm.getConnection();
+        try{
+            Statement st = koneksi.createStatement();
+            String sql = "select count(ID) from film";
+            ResultSet rs = st.executeQuery(sql);
+            if (rs.next()) {
+                return rs.getInt(1);
+            } else { 
+                return 0;
+            }
+        } catch(SQLException ex){
+            return 0;
+        }
+    }
+    
+    public int getCountCustomer(){
+        Connection koneksi;
+        KoneksiDatabase countCustomer = new KoneksiDatabase();
+        koneksi = countCustomer.getConnection();
+        try{
+            Statement st = koneksi.createStatement();
+            String sql = "select count(ID) from customer";
+            ResultSet rs = st.executeQuery(sql);
+            if (rs.next()) {
+                return rs.getInt(1);
+            } else { 
+                return 0;
+            }
+        } catch(SQLException ex){
+            return 0;
+        }
+    }
+    
+    public int getCountStaff(){
+        Connection koneksi;
+        KoneksiDatabase countStaff = new KoneksiDatabase();
+        koneksi = countStaff.getConnection();
+        try{
+            Statement st = koneksi.createStatement();
+            String sql = "select count(ID) from staff";
+            ResultSet rs = st.executeQuery(sql);
+            if (rs.next()) {
+                return rs.getInt(1);
+            } else { 
+                return 0;
+            }
+        } catch(SQLException ex){
+            return 0;
+        }
+    }
+
+    private void jTable1Load() {
+        Connection koneksi;
+        KoneksiDatabase tambahFilm = new KoneksiDatabase();
+        koneksi = tambahFilm.getConnection();
+        try{
+            Statement st = koneksi.createStatement();
+            String sql = "SELECT * FROM film JOIN language ON language.ID = film.languageID";
+            ResultSet rs = st.executeQuery(sql);
+            while(rs.next()){
+                Integer noFilm = Integer.valueOf(rs.getString("ID"));
+                String namaFilm = String.valueOf(rs.getString("title"));
+                Integer tahunRilis = Integer.valueOf(rs.getString("Release_year"));
+                String deskripsiFilm = String.valueOf(rs.getString("description"));
+                Integer ratingFilm = Integer.valueOf(rs.getString("rating"));
+                String bahasaFilm = String.valueOf(rs.getString("name"));
+                
+                String iniTable[] = {noFilm.toString(), namaFilm, tahunRilis.toString(), deskripsiFilm, ratingFilm.toString(), bahasaFilm};
+                DefaultTableModel modelTablenya = (DefaultTableModel)jTable1.getModel();
+                modelTablenya.addRow(iniTable);
+            }
+        }catch(SQLException ex){
+            Logger.getLogger (Movies.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+
+    private void clearTable() {
+        jTable1.setModel(new DefaultTableModel(null, new String[]{"No", "Title", "Release Year", "Desc", "Rating", "Language"}));
+    }
+
+    private void hidePanelOthers() {
+        jTableCat.setModel(new DefaultTableModel(null, new String[]{"No", "Name"}));
+        jTableLang.setModel(new DefaultTableModel(null, new String[]{"No", "Name"}));
+        jScrollPaneCat.setVisible(false);
+        jScrollPaneLang.setVisible(false);
+    }
+
+    private void loadTableCat() {
+        jScrollPaneCat.setVisible(true);
+        Connection koneksi;
+        KoneksiDatabase cat = new KoneksiDatabase();
+        koneksi = cat.getConnection();
+        try{
+            Statement st = koneksi.createStatement();
+            String sql = "select * from category";
+            ResultSet rs = st.executeQuery(sql);
+            while(rs.next()){
+                Integer noCat = Integer.valueOf(rs.getString("id"));
+                String namaCat = String.valueOf(rs.getString("name"));   
+                
+                String iniTable[] = {noCat.toString(), namaCat};
+                DefaultTableModel modelTablenya = (DefaultTableModel)jTableCat.getModel();
+                modelTablenya.addRow(iniTable);
+            }
+        }catch(SQLException ex){
+            Logger.getLogger (Movies.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+
+    private void loadTableLang() {
+        jScrollPaneLang.setVisible(true);
+        Connection koneksi;
+        KoneksiDatabase cat = new KoneksiDatabase();
+        koneksi = cat.getConnection();
+        try{
+            Statement st = koneksi.createStatement();
+            String sql = "select * from language";
+            ResultSet rs = st.executeQuery(sql);
+            while(rs.next()){
+                Integer noLang = Integer.valueOf(rs.getString("ID"));
+                String namaLang = String.valueOf(rs.getString("name"));   
+                
+                String iniTable[] = {noLang.toString(), namaLang};
+                DefaultTableModel modelTablenya = (DefaultTableModel)jTableLang.getModel();
+                modelTablenya.addRow(iniTable);
+            }
+        }catch(SQLException ex){
+            Logger.getLogger (Movies.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+
+    private void sortTitle() {
+        Connection koneksi;
+        KoneksiDatabase tambahFilm = new KoneksiDatabase();
+        koneksi = tambahFilm.getConnection();
+        try{
+            Statement st = koneksi.createStatement();
+            String sql = "SELECT * FROM film JOIN language ON language.ID = film.languageID ORDER BY title ASC";
+            ResultSet rs = st.executeQuery(sql);
+            while(rs.next()){
+                Integer noFilm = Integer.valueOf(rs.getString("ID"));
+                String namaFilm = String.valueOf(rs.getString("title"));
+                Integer tahunRilis = Integer.valueOf(rs.getString("Release_year"));
+                String deskripsiFilm = String.valueOf(rs.getString("description"));
+                Integer ratingFilm = Integer.valueOf(rs.getString("rating"));
+                String bahasaFilm = String.valueOf(rs.getString("name"));                
+                
+                String iniTable[] = {noFilm.toString(), namaFilm, tahunRilis.toString(), deskripsiFilm, ratingFilm.toString(), bahasaFilm};
+                DefaultTableModel modelTablenya = (DefaultTableModel)jTable1.getModel();
+                modelTablenya.addRow(iniTable);
+            }
+        }catch(SQLException ex){
+            Logger.getLogger (Movies.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+    
+    private void sortYear() {
+        Connection koneksi;
+        KoneksiDatabase tambahFilm = new KoneksiDatabase();
+        koneksi = tambahFilm.getConnection();
+        try{
+            Statement st = koneksi.createStatement();
+            String sql = "SELECT * FROM film JOIN language ON language.ID = film.languageID ORDER BY Release_year DESC, title ASC";
+            ResultSet rs = st.executeQuery(sql);
+            while(rs.next()){
+                Integer noFilm = Integer.valueOf(rs.getString("ID"));
+                String namaFilm = String.valueOf(rs.getString("title"));
+                Integer tahunRilis = Integer.valueOf(rs.getString("Release_year"));
+                String deskripsiFilm = String.valueOf(rs.getString("description"));
+                Integer ratingFilm = Integer.valueOf(rs.getString("rating"));
+                String bahasaFilm = String.valueOf(rs.getString("name"));
+                
+                String iniTable[] = {noFilm.toString(), namaFilm, tahunRilis.toString(), deskripsiFilm, ratingFilm.toString(), bahasaFilm};
+                DefaultTableModel modelTablenya = (DefaultTableModel)jTable1.getModel();
+                modelTablenya.addRow(iniTable);
+            }
+        }catch(SQLException ex){
+            Logger.getLogger (Movies.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+    
+    private void sortRating() {
+        Connection koneksi;
+        KoneksiDatabase tambahFilm = new KoneksiDatabase();
+        koneksi = tambahFilm.getConnection();
+        try{
+            Statement st = koneksi.createStatement();
+            String sql = "SELECT * FROM film JOIN language ON language.ID = film.languageID ORDER BY rating DESC, title ASC";
+            ResultSet rs = st.executeQuery(sql);
+            while(rs.next()){
+                Integer noFilm = Integer.valueOf(rs.getString("ID"));
+                String namaFilm = String.valueOf(rs.getString("title"));
+                Integer tahunRilis = Integer.valueOf(rs.getString("Release_year"));
+                String deskripsiFilm = String.valueOf(rs.getString("description"));
+                Integer ratingFilm = Integer.valueOf(rs.getString("rating"));
+                String bahasaFilm = String.valueOf(rs.getString("name"));
+                
+                String iniTable[] = {noFilm.toString(), namaFilm, tahunRilis.toString(), deskripsiFilm, ratingFilm.toString(), bahasaFilm};
+                DefaultTableModel modelTablenya = (DefaultTableModel)jTable1.getModel();
+                modelTablenya.addRow(iniTable);
+            }
+        }catch(SQLException ex){
+            Logger.getLogger (Movies.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+    
+    private void loadDropLangUpdate(int id) {
+        Connection koneksi;
+        KoneksiDatabase langdata = new KoneksiDatabase();
+        koneksi = langdata.getConnection();
+        try{
+            Statement st = koneksi.createStatement();
+            String sql = "select * from language where ID = ?";
+            PreparedStatement pstmt = koneksi.prepareStatement(sql);
+            pstmt.setInt(1, id);
+            ResultSet rs = pstmt.executeQuery();
+            while(rs.next()){
+                String namaLang = rs.getString("name");
+                dropdownLangUpdate.setSelectedItem(namaLang);
+                dropIdLangUpdate.setText(rs.getString("ID"));
+            }            
+        }catch(SQLException ex){
+            Logger.getLogger (Movies.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+    
+    private void loadDropCatUpdate(int id) {
+        Connection koneksi;
+        KoneksiDatabase langdata = new KoneksiDatabase();
+        koneksi = langdata.getConnection();
+        try{
+            Statement st = koneksi.createStatement();
+            String sql = "SELECT * FROM film_category JOIN category ON category.id = film_category.categoryID where FileID = ?";
+            PreparedStatement pstmt = koneksi.prepareStatement(sql);
+            pstmt.setInt(1, id);
+            ResultSet rs = pstmt.executeQuery();
+            while(rs.next()){
+                String namaCat = rs.getString("name");
+                dropdownCatUpdate.setSelectedItem(namaCat);
+                dropIdCatUpdate.setText(rs.getString("id"));
+            }            
+        }catch(SQLException ex){
+            Logger.getLogger (Movies.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+
+    private void loadDropCat() {
+        Connection koneksi;
+        KoneksiDatabase catdata = new KoneksiDatabase();
+        koneksi = catdata.getConnection();
+        try{
+            Statement st = koneksi.createStatement();
+            String sql = "select * from category";
+            ResultSet rs = st.executeQuery(sql);
+            while(rs.next()){
+                String namaCat = rs.getString("name");                
+                dropdownCat.addItem(namaCat);
+                dropdownCatUpdate.addItem(namaCat);
+            }            
+        }catch(SQLException ex){
+            Logger.getLogger (Movies.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+
+    private void loadDropLang() {
+        Connection koneksi;
+        KoneksiDatabase catdata = new KoneksiDatabase();
+        koneksi = catdata.getConnection();
+        try{
+            Statement st = koneksi.createStatement();
+            String sql = "select * from language";
+            ResultSet rs = st.executeQuery(sql);
+            while(rs.next()){
+                String namaLang = rs.getString("name");                
+                dropdownLang.addItem(namaLang);
+                dropdownLangUpdate.addItem(namaLang);
+            }            
+        }catch(SQLException ex){
+            Logger.getLogger (Movies.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+
+    private void clearFields() {
+        inputTitle.setText("Enter movie title");
+        inputYear.setText("Enter movie year");
+        inputLength.setText("Length");
+        dropdownRating.setSelectedIndex(0);
+        textareaDesc.setText("Enter movie description");
+        textareaSpecFeat.setText("Enter special features");
+        textareaFullText.setText("Enter fulltext");
+        inputRentalRate.setText("Enter rental rate");
+        inputRentalDur.setText("Duration");
+        inputRentalRepCost.setText("Enter replacement cost");
+    }
+
+    private void insertFilmCat(String id) {
+        Connection koneksi;
+        KoneksiDatabase tambahFilm = new KoneksiDatabase();
+        koneksi = tambahFilm.getConnection();
+        String querys = "INSERT INTO film_category (FileID, categoryID) VALUES(?, ?)";
+        try{
+            PreparedStatement pstmt = koneksi.prepareStatement(querys);
+            pstmt.setInt(1, Integer.parseInt(id));
+            pstmt.setInt(2, Integer.parseInt(dropIdCat.getText().toString()));
+            pstmt.executeUpdate();
+        }catch(SQLException ex){
+            Logger.getLogger (Movies.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+
+    private void updateFilmCat(int idFile) {
+        Connection koneksi;
+        KoneksiDatabase tambahFilm = new KoneksiDatabase();
+        koneksi = tambahFilm.getConnection();
+        
+        Integer val1 = Integer.parseInt(dropIdCatUpdate.getText().toString());
+        String querys = "UPDATE film_category SET categoryID='"+val1+"' WHERE FileID = '"+idFile+"'";
+        try{
+            PreparedStatement pstmt = koneksi.prepareStatement(querys);
+            pstmt.executeUpdate();
+        }catch(SQLException ex){
+            Logger.getLogger (Movies.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
 }
